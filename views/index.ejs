@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>BlogPost</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- First Bootstrap 5.2, followed by Bootstrap Icons 1.8.3, followed by Google Fonts-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Pacifico&family=Quattrocento&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/index.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar  -->
+    <nav class="navbar navbar-expand-lg navbar-light p-2">
+        <a class="navbar-brand text-white mx-auto fs-1" href="/">BlogPost</a>
+    </nav>
+    <div class="container-fluid h-100 text-white">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-10">
+                <div class="d-flex flex-column">
+                    <div class="col mt-lg-2 m-lg-5 mt-md-2 m-md-3 p-lg-4 p-3 mb-4 rounded-3 box shadow-sm">
+                        <form class="create-post" action="/create" method="post">
+                            <div class="mb-3 text-center fs-2 title">What's on your mind?</div>
+                            <div class="mb-3">
+                                <label for="mp-Title" class="form-label fw-bold">Title</label>
+                                <input type="text" class="form-control" id="mp-Title" name="title"
+                                    placeholder="Enter the title">
+                            </div>
+                            <div class="mb-3">
+                                <label for="content" class="form-label fw-bold">Content</label>
+                                <textarea class="form-control" id="mp-Content" name="content"
+                                    placeholder="Enter the article." rows="2"></textarea>
+                            </div>
+                            <div class="mb-3 text-end">
+                                <button class="btn btn-primary fw-bold" type="submit" name="create">Post!</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col m-lg-3">
+                        <% if (blogs.length !=0) { %>
+                            <form id="deleteForm" class="d-none" action="/delete" method="post"></form>
+                            <div class="row p-2 text-center">
+                                <h2 class="articles title">Blogs Posted</h2>
+                            </div>
+                            <div class="d-flex flex-column flex-column-reverse">
+                                <% for(var i=0; i < blogs.length; i++) { %>
+                                    <div class="card rounded p-2 mb-5">
+                                        <div class="card-body">
+                                            <div class="card-title fw-light fs-3 t">
+                                                <%= blogs[i].title%>
+                                            </div>
+                                            <div class="card-text text-wrap content">
+                                                <%= blogs[i].content%>
+                                            </div>
+                                        </div>
+                                        <div class="p-2">
+                                            <div class="row ps-2 pe-2">
+                                                <div class="col-10 text-start my-auto"><span class="text-secondary">
+                                                        <span class="fw-bold">Posted On: </span>
+                                                        <%= blogs[i].date %>, <%= blogs[i].time %>
+                                                    </span></div>
+                                                <div class=" col-2 text-end">
+                                                    <button class="btn btn-outline-danger" type="submit"
+                                                        form="deleteForm" name="deleteID
+                                                value=" <%=blogs[i].id%>"><i class="bi bi-trash-fill"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                            </div>
+                            <% } else { %>
+                                <div class="col text-center"><span class="fs-2 no-blogs-found"><i
+                                            class="bi bi-emoji-frown-fill align-middle"></i> No
+                                        blogs found.</span>
+                                </div>
+                                <% } %>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Navbar  -->
+    <!-- scripts -->
+    <!-- First Popper.js, followed by Bootstrap 5.2-->
+    <script src=" https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+        integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+        crossorigin="anonymous"></script>
+</body>
+<footer class="text-center text-white p-5 fw-bold">Made with <span class="pe-1"><i
+            class="bi bi-heart-fill text-danger"></i>.</span>Powered
+    by Bootstrap, Express and MongoDB</footer>
+
+</html>

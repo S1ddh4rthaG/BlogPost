@@ -1,0 +1,23 @@
+body {
+    background-color: #18181C;
+}
+
+.card,
+.box {
+    background-color: #2A292E;
+}
+
+.navbar-brand,
+.no-blogs-found,
+.title {
+    font-family: 'Quattrocento', serif;
+}
+
+.create-post .label,
+.card-text {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.card-title {
+    font-family: 'Pacifico', cursive;
+}
